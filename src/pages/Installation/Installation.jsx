@@ -67,7 +67,6 @@ const Installation = () => {
                 </div>
             </div>
 
-            {/* ✅ Loop through installed apps */}
             <div className='mt-6 space-y-4'>
                 {myStore.length > 0 ? (
                     myStore.map((app) => (

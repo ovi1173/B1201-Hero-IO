@@ -9,21 +9,22 @@ const Apps = () => {
     const [searchItem, setSearchItem] = useState('');
     const [filteredApps, setFilteredApps] = useState(allApps);
     const [loading, setLoading] = useState(false);
-
     useEffect(() => {
+        if (searchItem.trim() === '') {
+            setFilteredApps(allApps);
+            setLoading(false);
+            return;
+        }
+
+        setLoading(true);
+
         const delayDebounce = setTimeout(() => {
-            if (searchItem.trim() === '') {
-                setFilteredApps(allApps);
-                setLoading(false);
-            } else {
-                setLoading(true);
-                const results = allApps.filter((app) =>
-                    app.title.toLowerCase().includes(searchItem.toLowerCase())
-                );
-                setFilteredApps(results);
-                setLoading(false);
-            }
-        }, 300); // debounce delay
+            const results = allApps.filter((app) =>
+                app.title.toLowerCase().includes(searchItem.toLowerCase())
+            );
+            setFilteredApps(results);
+            setLoading(false); 
+        }, 200);
 
         return () => clearTimeout(delayDebounce);
     }, [searchItem, allApps]);
@@ -54,7 +55,7 @@ const Apps = () => {
 
             {
                 loading ? (
-                    <div className='flex justify-center mt-10'>
+                    <div className=' mx-auto my-0'>
                         <Spinner></Spinner>
                     </div>
                 ) : filteredApps.length > 0 ? (
@@ -64,7 +65,7 @@ const Apps = () => {
                         ))}
                     </div>
                 ) : (
-                    <p className='text-center text-gray-500 text-2xl mt-10'>🚫 No App Found</p>
+                    <p className='text-center text-gray-600 font-bold text-4xl mt-10'>🚫 No App Found</p>
                 )
             }
 

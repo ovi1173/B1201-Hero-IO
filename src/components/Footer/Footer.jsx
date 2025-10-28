@@ -3,13 +3,13 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
+            <footer className="footer sm:footer-horizontal bg-gradient-to-r from-[#2e2793] to-[#8454ae] text-white text-base-content p-10">
                 <nav>
                     <h6 className="footer-title">Services</h6>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <a className="link link-hover">App Development</a>
+                    <a className="link link-hover">UI/UX Design</a>
+                    <a className="link link-hover">App Maintenance</a>
+                    <a className="link link-hover">App Marketing</a>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Company</h6>

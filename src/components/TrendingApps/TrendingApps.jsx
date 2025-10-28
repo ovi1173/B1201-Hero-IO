@@ -9,7 +9,7 @@ const TrendingApps = () => {
        navigate("/apps");
     };
     return (
-        <div className='mt-15'>
+        <div className='mt-15 mb-10'>
             <h2 className='font-bold text-5xl mx-auto inter mb-2'> Trending Apps</h2>
             <p className='inter text-base opacity-60 mb-10'>Explore All Trending Apps on the Market developed by us</p>
             <div className='grid grid-cols-4 gap-4 mb-8'>
