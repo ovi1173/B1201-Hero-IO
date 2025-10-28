@@ -5,9 +5,9 @@ const CompleteApp = ({ app }) => {
     const {id, image, title, downloads, ratingAvg } = app;
     return (
         <Link to={`/apps/appDetails/${id}`}>
-            <div className=" p-6 rounded-box bg-base-200 w-fit shadow-sm cursor-pointer">
+            <div className=" p-6 rounded-box bg-base-200 w-full shadow-sm cursor-pointer">
                 <figure>
-                    <img
+                    <img className='mx-auto'
                         src={image}
                         alt="Shoes" />
                 </figure>
