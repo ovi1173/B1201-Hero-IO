@@ -8,9 +8,9 @@ const AppCard = ({ trendApp }) => {
 
   return (
     <Link to={`/appDetails/${id}`}>
-      <div className="p-6 rounded-box bg-base-200 w-full h-fit shadow-sm cursor-pointer">
+      <div className="p-6 rounded-box bg-base-200 w-full h-72 shadow-sm cursor-pointer">
         <figure>
-          <img src={image} alt={title} className="w-full h-40 object-cover rounded-md" />
+          <img src={image} alt={title} className="w-fit mx-auto h-40 object-cover rounded-md" />
         </figure>
         <div>
           <h2 className="card-title mt-2">{title}</h2>

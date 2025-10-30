@@ -52,7 +52,7 @@ const Apps = () => {
                     </svg>
                     <input
                         type="search"
-                        className="grow border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#632EE3] focus:border-transparent"
+                        className="grow  rounded-md px-2 py-1  "
                         placeholder="Search Apps"
                         value={searchItem}
                         onChange={(e) => setSearchItem(e.target.value)}
