@@ -1,4 +1,3 @@
-// AppCard.jsx
 import React from "react";
 import { Link } from "react-router";
 import { Download, Star } from "lucide-react";

@@ -28,7 +28,6 @@ export const router = createBrowserRouter([
             {
                 path: '/apps',
                 loader: () => fetch('/appsData.json'),
-                // errorElement:
                 Component: Apps,
             },
             {
@@ -41,7 +40,7 @@ export const router = createBrowserRouter([
                 element: <AppsDetails />,
                 loader: async () => {
                     const res = await fetch("/appsData.json");
-                    return res.json(); // returns array; AppsDetails will pick the correct item
+                    return res.json(); 
                 },
             },
             {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Download, StarIcon } from 'lucide-react';
 import { useLoaderData } from 'react-router';
-import { getStoredApp, removeFromDb } from '../../utility/addToDb';
+import { getStoredApps, removeFromDb } from '../../utility/addToDb';
 import { toast } from 'react-toastify';
 
 const Installation = () => {
@@ -9,7 +9,7 @@ const Installation = () => {
     const [myStore, setMystore] = useState([]);
     const [sort, setSort] = useState('');
     useEffect(() => {
-        const storedAppData = getStoredApp();
+        const storedAppData = getStoredApps();
         const convertedStoredApps = storedAppData.map((id) => parseInt(id));
         const myStoredApps = data.filter((app) => convertedStoredApps.includes(app.id));
         setMystore(myStoredApps);
@@ -28,17 +28,13 @@ const Installation = () => {
 
     const handleSort = (type) => {
         setSort(type);
-        if (type === 'hl') {
-            const sortedByHL = [...myStore].sort((a, b) => b.size - a.size);
-            setMystore(sortedByHL);
-        }
-        if (type === 'lh') {
-            const sortedByHL = [...myStore].sort((a, b) => a.size - b.size);
-            setMystore(sortedByHL);
-        }
-
-    }
-
+        const sorted = [...myStore].sort((a,b)=>{
+            const A = Number(a.downloads.replace(/\D/g,""));
+            const B = Number(b.downloads.replace(/\D/g,""));
+            return type === 'hl' ? B - A : A-B;
+        });
+       setMystore(sorted);
+    };
     return (
         <div>
             <h2 className='font-bold text-5xl mx-auto inter mb-2 mt-8'>
@@ -70,52 +66,12 @@ const Installation = () => {
             <div className='mt-6 space-y-4'>
                 {myStore.length > 0 ? (
                     myStore.map((app) => (
-                        // <div
-                        //     key={app.id}
-                        //     className='mb-4 border border-b-amber-100 p-3 flex flex-col sm:flex-row flex-1 gap-8 justify-between items-center rounded-md'
-                        // >
-                        //     <div className='flex gap-8 '>
-                        //         <img
-                        //             className='w-20 h-20 rounded-[6px]'
-                        //             src={app.image}
-                        //             alt={app.title}
-                        //         />
-                        //         <div>
-                        //             <h1 className='text-left font-bold text-2xl'>{app.title}</h1>
-
-                        //             <div className='flex gap-3 mt-2'>
-                        //                 <div className='flex gap-1 items-center justify-start'>
-                        //                     <Download className='text-[#00827A]' />
-                        //                     <h2 className='text-base font-bold inter'>
-                        //                         {app.downloads}
-                        //                     </h2>
-                        //                 </div>
-
-                        //                 <div className='flex gap-1 items-start justify-start inter'>
-                        //                     <StarIcon className='text-yellow-400' />
-                        //                     <h2 className='text-base font-bold inter'>
-                        //                         {app.ratingAvg}
-                        //                     </h2>
-                        //                 </div>
-
-                        //                 <div>
-                        //                     <h2 className='inter opacity-70'>{app.size}MB</h2>
-                        //                 </div>
-                        //             </div>
-                        //         </div>
-                        //     </div>
-
-                        //     <div className='block sm:hidden mb-4'>
-                        //         <button onClick={() => handleUninstall(app.id, app.title)} className='text-white bg-[#00D390] px-[20px] py-[10px] font-medium inter rounded-[6px] cursor-pointer'>
-                        //             Uninstall
-                        //         </button>
-                        //     </div>
-                        // </div>
+                 
                         <div
                             key={app.id}
                             className="mb-4 border-2 border-gray-300 p-3 flex flex-col sm:flex-row flex-1 gap-6 sm:gap-8 justify-between items-start sm:items-center rounded-md w-full"
                         >
-                            {/* ✅ Image + Info Section */}
+                           
                             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-start sm:items-center w-full sm:w-auto">
                                 <div className="flex items-start gap-4 sm:gap-8 w-full sm:w-auto">
                                     <img
@@ -145,7 +101,7 @@ const Installation = () => {
                                     </div>
                                 </div>
 
-                                {/* ✅ Button BELOW image on small devices */}
+                                
                                 <div className="block sm:hidden mt-4 w-full">
                                     <button
                                         onClick={() => handleUninstall(app.id, app.title)}
@@ -156,7 +112,6 @@ const Installation = () => {
                                 </div>
                             </div>
 
-                            {/* ✅ Button on RIGHT for large screens */}
                             <div className="hidden sm:block">
                                 <button
                                     onClick={() => handleUninstall(app.id, app.title)}

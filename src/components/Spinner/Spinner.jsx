@@ -6,7 +6,7 @@ const Spinner = () => {
             <h1 className="text-4xl font-bold flex items-center space-x-2">
                 <span>L</span>
                 <img
-                    src={LOGO} // replace with your image path
+                    src={LOGO} 
                     alt="loading"
                     className="w-10 h-10 animate-spin mx-1"
                 />
